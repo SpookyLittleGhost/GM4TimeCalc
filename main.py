@@ -1,16 +1,42 @@
-# This is a sample Python script.
+def calc_time_for_gunmarks(alpha, reload, gunmarks):
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    alphas = [alpha * 0.75, alpha, alpha * 1.25]
+
+    times_needed = []
+
+    i = 0
+
+    for gm in gunmarks:
+        counter = 0
+        j = 0
+
+        for alpha in alphas:
+
+            done = alpha
+            time = 0
+
+            while done < gm:
+                time += reload
+                done += alpha
+
+            shots = time / reload
+
+            print(f"Inspected gunmark: {gm} for Alpha {alpha} needs {time} seconds equal to {shots} shots!")
+
+            times_needed.append(time)
+
+            j += 1
+
+        i += 1
+
+    return times_needed
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
+# The main method
+alpha = 490
+reload = 12.5
+gunmarks = [2500, 3000, 3750]
 
+times = calc_time_for_gunmarks(alpha, reload, gunmarks)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(times)
